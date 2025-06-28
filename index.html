@@ -456,6 +456,7 @@
     </div>
     &copy; 2025 Sparkle Products &mdash; All rights reserved.
   </footer>
+<!-- ...[existing code above remains unchanged]... -->
   <script>
     // Modal popup logic
     const modalOverlay = document.getElementById('modalOverlay');
@@ -465,32 +466,43 @@
     const productNameInput = document.getElementById('productName');
     const thankyouOverlay = document.getElementById('thankyouOverlay');
 
+    // Add pointer cursor to cards (in case CSS is missing)
+    document.querySelectorAll('.card').forEach(card => {
+      card.style.cursor = "pointer";
+    });
+
     // Add click listener to all product cards
     document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('click', function() {
+      card.addEventListener('click', function () {
         const product = card.getAttribute('data-product') || card.querySelector('.card-title').innerText;
+        // Set product name in form before reset, then after to ensure it persists
         productNameInput.value = product;
-        modalOverlay.classList.add('active');
         orderForm.reset();
-        productNameInput.value = product; // re-set after reset
+        productNameInput.value = product;
         modalSuccessMsg.classList.remove("active");
+        modalOverlay.classList.add('active');
       });
     });
+
     // Close modal logic
-    closeModalBtn.onclick = function() { modalOverlay.classList.remove('active'); }
-    modalOverlay.onclick = function(e) {
-      if (e.target === modalOverlay) { modalOverlay.classList.remove('active'); }
+    closeModalBtn.onclick = function () {
+      modalOverlay.classList.remove('active');
+    }
+    modalOverlay.onclick = function (e) {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('active');
+      }
     }
 
     // Hide thank you message when overlay is clicked
-    thankyouOverlay.onclick = function(e) {
+    thankyouOverlay.onclick = function (e) {
       if (e.target === thankyouOverlay) {
         thankyouOverlay.classList.remove('active');
       }
     };
 
     // Form submit logic
-    orderForm.onsubmit = function(e) {
+    orderForm.onsubmit = function (e) {
       e.preventDefault();
       // Collect form data
       const product = document.getElementById('productName').value;
@@ -501,17 +513,20 @@
       // WhatsApp message format
       const message =
         `Order Enquiry:%0A` +
-        `Product: ${product}%0A` +
-        `Name: ${name}%0A` +
-        `Mobile: ${mobile}%0A` +
-        `Email: ${email}`;
+        `Product: ${encodeURIComponent(product)}%0A` +
+        `Name: ${encodeURIComponent(name)}%0A` +
+        `Mobile: ${encodeURIComponent(mobile)}%0A` +
+        `Email: ${encodeURIComponent(email)}`;
 
       // Replace with your WhatsApp number, e.g. 919876543210 (no + or spaces)
       const whatsappNumber = '9951149485';
       const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
 
-      // Open WhatsApp with pre-filled message
-      window.open(whatsappURL, '_blank');
+      // Try to open WhatsApp with pre-filled message
+      const win = window.open(whatsappURL, '_blank');
+      if (!win) {
+        alert('Unable to open WhatsApp. Please ensure pop-ups are enabled or contact us directly.');
+      }
 
       // Show thank you message overlay
       modalOverlay.classList.remove('active');
@@ -523,7 +538,11 @@
       setTimeout(() => {
         thankyouOverlay.classList.remove('active');
       }, 3300);
+
+      // Optionally reset form again
+      orderForm.reset();
     }
   </script>
+<!-- ...[rest of your file remains unchanged]... -->
 </body>
 </html>
