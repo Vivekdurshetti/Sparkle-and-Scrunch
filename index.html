@@ -12,18 +12,51 @@
       background: #f8f8f8;
       color: #222;
     }
-    header {
-      background: #7b2ff2;
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background: linear-gradient(90deg, #7b2ff2 0%, #f357a8 100%);
-      color: #fff;
-      padding: 20px 0;
+      padding: 0 0 0 0;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      margin-bottom: 25px;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar li {
+      margin: 0 22px;
+    }
+    .navbar a {
+      display: block;
+      padding: 18px 0;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .navbar a:hover, .navbar a.active {
+      color: #f7deff;
+      border-bottom: 2px solid #fff;
+    }
+    header {
+      background: #fff;
+      color: #7b2ff2;
+      padding: 22px 0 12px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      margin-bottom: 15px;
+      text-align: center;
     }
     header h1 {
       margin: 0;
       letter-spacing: 2px;
-      font-size: 2.3em;
+      font-size: 2.2em;
     }
     .about {
       max-width: 700px;
@@ -91,27 +124,51 @@
       background: #222;
       color: #fff;
       text-align: center;
-      padding: 18px 0 12px 0;
+      padding: 25px 0 15px 0;
       margin-top: 40px;
       font-size: 1em;
+    }
+    .footer-social {
+      margin-bottom: 10px;
+    }
+    .footer-social a {
+      margin: 0 10px;
+      display: inline-block;
+      color: #f357a8;
+      font-size: 1.3em;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-social a:hover {
+      color: #fff;
     }
     @media (max-width: 700px) {
       .gallery { gap: 16px; }
       .card { width: 95vw; max-width: 360px; }
       .about { padding: 12px 10px; }
+      .navbar li { margin: 0 10px; }
+      .navbar a { padding: 14px 0; font-size: 1em; }
     }
   </style>
 </head>
 <body>
-  <header>
+  <nav class="navbar">
+    <ul>
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <header id="home">
     <h1>Sparkle Products</h1>
   </header>
-  <div class="about">
+  <div class="about" id="about">
     <p>
       Welcome to Sparkle Products! We offer handpicked, high-quality products that bring joy and color to your life. Explore our gallery and discover something special for yourself or your loved ones.
     </p>
   </div>
-  <div class="gallery">
+  <div class="gallery" id="products">
     <a class="card" href="https://www.instagram.com/yourusername" target="_blank">
       <img src="products/product1.jpg" alt="Handmade Bracelet" />
       <div class="card-content">
@@ -130,9 +187,13 @@
     </a>
     <!-- Add more product cards here -->
   </div>
-  <footer>
-    &copy; 2025 Sparkle Products &mdash; Follow us on 
-    <a href="https://www.instagram.com/yourusername" style="color:#f357a8;">Instagram</a>
+  <footer id="contact">
+    <div class="footer-social">
+      <a href="https://www.instagram.com/yourusername" target="_blank" title="Instagram">Instagram</a>
+      <a href="mailto:your@email.com" title="Email">Email</a>
+      <!-- Add more social/contact links as needed -->
+    </div>
+    &copy; 2025 Sparkle Products &mdash; All rights reserved.
   </footer>
 </body>
 </html>
