@@ -70,16 +70,16 @@
     .gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px; /* Reduced the space between cards */
+      gap: 18px;
       justify-items: center;
-      margin: 16px 10px 24px 10px; /* Smaller margin for tighter look */
+      margin: 16px 10px 24px 10px;
     }
     .card {
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 3px 12px rgba(123,47,242,0.07);
       overflow: hidden;
-      width: 215px; /* Slightly reduced width for compactness */
+      width: 215px;
       transition: transform 0.18s, box-shadow 0.18s;
       text-align: left;
       text-decoration: none;
@@ -208,6 +208,46 @@
       margin-top: 18px;
       text-align: center;
       font-weight: 700;
+      font-size: 1.1em;
+      display: none;
+    }
+    .modal-success.active {
+      display: block;
+    }
+    /* Thank you overlay */
+    .thankyou-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s;
+    }
+    .thankyou-overlay.active {
+      display: flex;
+    }
+    .thankyou-message {
+      background: #fff;
+      color: #222;
+      border-radius: 14px;
+      padding: 36px 32px 28px 32px;
+      box-shadow: 0 8px 32px rgba(123,47,242,0.21);
+      text-align: center;
+      font-size: 1.2em;
+      max-width: 92vw;
+      min-width: 220px;
+    }
+    .thankyou-message h3 {
+      margin-top: 0;
+      color: #7b2ff2;
+      font-size: 1.56em;
+      margin-bottom: 13px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0;}
+      to   { opacity: 1;}
     }
     footer {
       background: #222;
@@ -334,8 +374,16 @@
         <div class="modal-actions">
           <button type="submit">Submit</button>
         </div>
-        <div class="modal-success" id="modalSuccessMsg" style="display:none;">Thank you! Your enquiry has been submitted.</div>
+        <div class="modal-success" id="modalSuccessMsg">Thank you! Your enquiry has been submitted.</div>
       </form>
+    </div>
+  </div>
+  <!-- Thank you message overlay -->
+  <div class="thankyou-overlay" id="thankyouOverlay">
+    <div class="thankyou-message">
+      <h3>Thank You!</h3>
+      <p>Your enquiry has been received.<br>
+      We appreciate your interest and will contact you soon.</p>
     </div>
   </div>
   <footer id="contact">
@@ -352,6 +400,8 @@
     const orderForm = document.getElementById('orderForm');
     const modalSuccessMsg = document.getElementById('modalSuccessMsg');
     const productNameInput = document.getElementById('productName');
+    const thankyouOverlay = document.getElementById('thankyouOverlay');
+
     // Add click listener to all product cards
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('click', function() {
@@ -360,7 +410,7 @@
         modalOverlay.classList.add('active');
         orderForm.reset();
         productNameInput.value = product; // re-set after reset
-        modalSuccessMsg.style.display = 'none';
+        modalSuccessMsg.classList.remove("active");
       });
     });
     // Close modal logic
@@ -368,6 +418,14 @@
     modalOverlay.onclick = function(e) {
       if (e.target === modalOverlay) { modalOverlay.classList.remove('active'); }
     }
+
+    // Hide thank you message when overlay is clicked
+    thankyouOverlay.onclick = function(e) {
+      if (e.target === thankyouOverlay) {
+        thankyouOverlay.classList.remove('active');
+      }
+    };
+
     // Form submit logic
     orderForm.onsubmit = function(e) {
       e.preventDefault();
@@ -378,7 +436,7 @@
       const email = document.getElementById('emailId').value;
 
       // WhatsApp message format
-      const message = 
+      const message =
         `Order Enquiry:%0A` +
         `Product: ${product}%0A` +
         `Name: ${name}%0A` +
@@ -392,10 +450,16 @@
       // Open WhatsApp with pre-filled message
       window.open(whatsappURL, '_blank');
 
-      // Optional: close modal after a delay
+      // Show thank you message overlay
+      modalOverlay.classList.remove('active');
       setTimeout(() => {
-        modalOverlay.classList.remove('active');
-      }, 800);
+        thankyouOverlay.classList.add('active');
+      }, 250);
+
+      // Auto-hide thank you message after 3 seconds
+      setTimeout(() => {
+        thankyouOverlay.classList.remove('active');
+      }, 3300);
     }
   </script>
 </body>
