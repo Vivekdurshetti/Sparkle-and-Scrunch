@@ -17,7 +17,6 @@
       justify-content: center;
       align-items: center;
       background: linear-gradient(90deg, #7b2ff2 0%, #f357a8 100%);
-      padding: 0 0 0 0;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       position: sticky;
       top: 0;
@@ -69,11 +68,11 @@
       line-height: 1.7;
     }
     .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 30px;
+      justify-items: center;
+      margin: 24px;
     }
     .card {
       background: #fff;
@@ -233,8 +232,15 @@
       color: #fff;
     }
     @media (max-width: 700px) {
-      .gallery { gap: 16px; }
-      .card { width: 95vw; max-width: 360px; }
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin: 12px;
+      }
+      .card {
+        width: 95vw;
+        max-width: 360px;
+      }
       .about { padding: 12px 10px; }
       .navbar li { margin: 0 10px; }
       .navbar a { padding: 14px 0; font-size: 1em; }
