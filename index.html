@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sparkle Products | Unique Gifts & Accessories</title>
-  <meta name="description" content="Sparkle Products: Handpicked, high-quality gifts and accessories to brighten your life. Discover our exclusive collection of jewelry, watches, wallets, and more.">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
   <style>
     body {
@@ -161,19 +160,6 @@
       list-style: disc inside;
       padding-left: 0;
     }
-    /* Modal styles ... (keep as is) */
-    .modal-overlay { /* ... unchanged ... */ }
-    .modal-overlay.active { display: flex; }
-    .modal { /* ... unchanged ... */ }
-    @keyframes modal-anim { /* ... unchanged ... */ }
-    .modal h2 { /* ... unchanged ... */ }
-    .modal label, .modal input, .modal-actions, .modal-success, .close-btn { /* ... unchanged ... */ }
-    .thankyou-overlay { /* ... unchanged ... */ }
-    .thankyou-overlay.active { display: flex; }
-    .thankyou-message { /* ... unchanged ... */ }
-    .thankyou-message h3 { /* ... unchanged ... */ }
-    @keyframes fadeIn { from { opacity: 0;} to   { opacity: 1;} }
-    /* Testimonials section */
     .testimonials-section {
       max-width: 900px;
       margin: 35px auto 30px auto;
@@ -281,6 +267,139 @@
       .about, .testimonials-section, .contact-section { padding: 12px 10px; }
       .navbar li { margin: 0 10px; }
       .navbar a { padding: 14px 0; font-size: 1em; }
+    }
+    /* Modal styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 420px;
+      width: 96vw;
+      padding: 28px 24px 18px 24px;
+      box-shadow: 0 8px 32px rgba(123,47,242,0.21);
+      position: relative;
+      animation: modal-anim 0.22s;
+    }
+    @keyframes modal-anim {
+      from { transform: translateY(60px) scale(0.96); opacity: 0; }
+      to   { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .modal h2 {
+      margin-top: 0;
+      color: #7b2ff2;
+      margin-bottom: 16px;
+      font-size: 1.35em;
+    }
+    .modal label {
+      display: block;
+      margin: 12px 0 4px 0;
+      font-weight: 600;
+      color: #222;
+    }
+    .modal input[type="text"],
+    .modal input[type="email"],
+    .modal input[type="tel"] {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid #dbc7f6;
+      border-radius: 5px;
+      font-size: 1em;
+      margin-bottom: 5px;
+      background: #faf8ff;
+      box-sizing: border-box;
+    }
+    .modal input[readonly] {
+      background: #f0e8fc;
+      color: #888;
+      font-style: italic;
+    }
+    .modal .modal-actions {
+      margin-top: 16px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .modal button {
+      background: #7b2ff2;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.14s;
+    }
+    .modal button:hover { background: #f357a8; }
+    .modal .close-btn {
+      position: absolute;
+      top: 12px; right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.3em;
+      color: #c2b4e7;
+      cursor: pointer;
+      font-weight: 700;
+      transition: color 0.16s;
+    }
+    .modal .close-btn:hover { color: #f357a8; }
+    .modal-success {
+      color: #3cbb60;
+      margin-top: 18px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.1em;
+      display: none;
+    }
+    .modal-success.active {
+      display: block;
+    }
+    /* Thank you overlay */
+    .thankyou-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s;
+    }
+    .thankyou-overlay.active {
+      display: flex;
+    }
+    .thankyou-message {
+      background: #fff;
+      color: #222;
+      border-radius: 14px;
+      padding: 36px 32px 28px 32px;
+      box-shadow: 0 8px 32px rgba(123,47,242,0.21);
+      text-align: center;
+      font-size: 1.2em;
+      max-width: 92vw;
+      min-width: 220px;
+    }
+    .thankyou-message h3 {
+      margin-top: 0;
+      color: #7b2ff2;
+      font-size: 1.56em;
+      margin-bottom: 13px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0;}
+      to   { opacity: 1;}
     }
   </style>
 </head>
@@ -407,7 +526,7 @@
       <h2>Order Enquiry</h2>
       <form id="orderForm" autocomplete="off">
         <label for="productName">Product</label>
-        <input type="text" id="productName" name="productName" readonly />
+        <input type="text" id="productName" name="productName" readonly required />
 
         <label for="customerName">Your Name</label>
         <input type="text" id="customerName" name="customerName" required />
@@ -421,7 +540,6 @@
         <div class="modal-actions">
           <button type="submit">Submit</button>
         </div>
-        <div class="modal-success" id="modalSuccessMsg">Thank you! Your enquiry has been submitted.</div>
       </form>
     </div>
   </div>
@@ -456,35 +574,30 @@
     </div>
     &copy; 2025 Sparkle Products &mdash; All rights reserved.
   </footer>
-<!-- ...[existing code above remains unchanged]... -->
   <script>
     // Modal popup logic
     const modalOverlay = document.getElementById('modalOverlay');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const orderForm = document.getElementById('orderForm');
-    const modalSuccessMsg = document.getElementById('modalSuccessMsg');
     const productNameInput = document.getElementById('productName');
     const thankyouOverlay = document.getElementById('thankyouOverlay');
 
-    // Add pointer cursor to cards (in case CSS is missing)
+    // Add pointer cursor to cards
     document.querySelectorAll('.card').forEach(card => {
       card.style.cursor = "pointer";
     });
 
-    // Add click listener to all product cards
+    // Open modal with product name
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('click', function () {
         const product = card.getAttribute('data-product') || card.querySelector('.card-title').innerText;
-        // Set product name in form before reset, then after to ensure it persists
-        productNameInput.value = product;
         orderForm.reset();
         productNameInput.value = product;
-        modalSuccessMsg.classList.remove("active");
         modalOverlay.classList.add('active');
       });
     });
 
-    // Close modal logic
+    // Close modal
     closeModalBtn.onclick = function () {
       modalOverlay.classList.remove('active');
     }
@@ -494,17 +607,16 @@
       }
     }
 
-    // Hide thank you message when overlay is clicked
+    // Hide thank you overlay
     thankyouOverlay.onclick = function (e) {
       if (e.target === thankyouOverlay) {
         thankyouOverlay.classList.remove('active');
       }
     };
 
-    // Form submit logic
+    // On submit, open WhatsApp with form details
     orderForm.onsubmit = function (e) {
       e.preventDefault();
-      // Collect form data
       const product = document.getElementById('productName').value;
       const name = document.getElementById('customerName').value;
       const mobile = document.getElementById('mobileNumber').value;
@@ -518,15 +630,12 @@
         `Mobile: ${encodeURIComponent(mobile)}%0A` +
         `Email: ${encodeURIComponent(email)}`;
 
-      // Replace with your WhatsApp number, e.g. 919876543210 (no + or spaces)
+      // Your WhatsApp number, e.g. 919876543210 (no + or spaces)
       const whatsappNumber = '9951149485';
       const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
 
-      // Try to open WhatsApp with pre-filled message
-      const win = window.open(whatsappURL, '_blank');
-      if (!win) {
-        alert('Unable to open WhatsApp. Please ensure pop-ups are enabled or contact us directly.');
-      }
+      // Open WhatsApp
+      window.open(whatsappURL, '_blank');
 
       // Show thank you message overlay
       modalOverlay.classList.remove('active');
@@ -539,10 +648,8 @@
         thankyouOverlay.classList.remove('active');
       }, 3300);
 
-      // Optionally reset form again
       orderForm.reset();
     }
   </script>
-<!-- ...[rest of your file remains unchanged]... -->
 </body>
 </html>
