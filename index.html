@@ -142,11 +142,28 @@
       flex-direction: column;
       justify-content: space-between;
     }
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
     .card-title {
       font-weight: 700;
       font-size: 1.17em;
-      margin: 0 0 4px 0;
       color: #7b2ff2;
+      margin: 0;
+    }
+    .price-tag {
+      background: #f357a8;
+      color: #fff;
+      border-radius: 7px;
+      padding: 2px 12px;
+      font-size: 1em;
+      font-weight: 700;
+      margin-left: 8px;
+      display: inline-block;
+      white-space: nowrap;
     }
     .card-desc {
       font-size: 0.99em;
@@ -159,6 +176,23 @@
       color: #6d6d6d;
       list-style: disc inside;
       padding-left: 0;
+    }
+    .buy-now-btn {
+      background: #7b2ff2;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 9px 15px;
+      font-size: 1em;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.14s;
+      letter-spacing: 1px;
+    }
+    .buy-now-btn:hover {
+      background: #f357a8;
+      color: #fff;
     }
     .testimonials-section {
       max-width: 900px;
@@ -431,76 +465,100 @@
     </p>
   </div>
   <div class="gallery" id="products">
-    <div class="card" data-product="Handmade Bracelet">
+    <div class="card" data-product="Handmade Bracelet" data-price="499">
       <img src="products/product1.jpg" alt="Handmade Bracelet" />
       <div class="card-content">
-        <div class="card-title">Handmade Bracelet</div>
+        <div class="card-title-row">
+          <div class="card-title">Handmade Bracelet</div>
+          <span class="price-tag">&#8377;499</span>
+        </div>
         <div class="card-desc">A vibrant, artisan-crafted bracelet made with love and care. Perfect for adding a pop of color to your style.</div>
         <ul class="card-features">
           <li>Adjustable, hypoallergenic</li>
           <li>Locally sourced materials</li>
           <li>Gift-ready packaging</li>
         </ul>
+        <button class="buy-now-btn" data-product="Handmade Bracelet" data-price="499">Buy Now</button>
       </div>
     </div>
-    <div class="card" data-product="Sparkle Earrings">
+    <div class="card" data-product="Sparkle Earrings" data-price="399">
       <img src="products/product2.jpg" alt="Sparkle Earrings" />
       <div class="card-content">
-        <div class="card-title">Sparkle Earrings</div>
+        <div class="card-title-row">
+          <div class="card-title">Sparkle Earrings</div>
+          <span class="price-tag">&#8377;399</span>
+        </div>
         <div class="card-desc">Elegant and lightweight earrings to add sparkle to any outfit. Available in multiple colors.</div>
         <ul class="card-features">
           <li>Nickel-free</li>
           <li>Hand-set stones</li>
           <li>Comes with velvet pouch</li>
         </ul>
+        <button class="buy-now-btn" data-product="Sparkle Earrings" data-price="399">Buy Now</button>
       </div>
     </div>
-    <div class="card" data-product="Elegant Pendant">
+    <div class="card" data-product="Elegant Pendant" data-price="599">
       <img src="products/product3.jpg" alt="Elegant Pendant" />
       <div class="card-content">
-        <div class="card-title">Elegant Pendant</div>
+        <div class="card-title-row">
+          <div class="card-title">Elegant Pendant</div>
+          <span class="price-tag">&#8377;599</span>
+        </div>
         <div class="card-desc">A stunning pendant with intricate design, perfect for gifting or daily wear.</div>
         <ul class="card-features">
           <li>18K gold-plated</li>
           <li>Adjustable chain</li>
           <li>Signature Sparkle design</li>
         </ul>
+        <button class="buy-now-btn" data-product="Elegant Pendant" data-price="599">Buy Now</button>
       </div>
     </div>
-    <div class="card" data-product="Classic Watch">
+    <div class="card" data-product="Classic Watch" data-price="1399">
       <img src="products/product4.jpg" alt="Classic Watch" />
       <div class="card-content">
-        <div class="card-title">Classic Watch</div>
+        <div class="card-title-row">
+          <div class="card-title">Classic Watch</div>
+          <span class="price-tag">&#8377;1399</span>
+        </div>
         <div class="card-desc">Timeless wrist watch with a modern twist, ideal for all occasions.</div>
         <ul class="card-features">
           <li>Water-resistant</li>
           <li>2-year warranty</li>
           <li>Unisex design</li>
         </ul>
+        <button class="buy-now-btn" data-product="Classic Watch" data-price="1399">Buy Now</button>
       </div>
     </div>
-    <div class="card" data-product="Chic Sunglasses">
+    <div class="card" data-product="Chic Sunglasses" data-price="799">
       <img src="products/product5.jpg" alt="Chic Sunglasses" />
       <div class="card-content">
-        <div class="card-title">Chic Sunglasses</div>
+        <div class="card-title-row">
+          <div class="card-title">Chic Sunglasses</div>
+          <span class="price-tag">&#8377;799</span>
+        </div>
         <div class="card-desc">Trendy sunglasses to elevate your summer style. UV400 protection included.</div>
         <ul class="card-features">
           <li>Scratch-resistant lenses</li>
           <li>Lightweight frame</li>
           <li>Includes hard case</li>
         </ul>
+        <button class="buy-now-btn" data-product="Chic Sunglasses" data-price="799">Buy Now</button>
       </div>
     </div>
-    <div class="card" data-product="Leather Wallet">
+    <div class="card" data-product="Leather Wallet" data-price="699">
       <img src="products/product6.jpg" alt="Leather Wallet" />
       <div class="card-content">
-        <div class="card-title">Leather Wallet</div>
+        <div class="card-title-row">
+          <div class="card-title">Leather Wallet</div>
+          <span class="price-tag">&#8377;699</span>
+        </div>
         <div class="card-desc">Premium quality leather wallet for everyday use. Sleek, durable, and stylish.</div>
         <ul class="card-features">
           <li>RFID protection</li>
           <li>Multiple card slots</li>
           <li>Compact & elegant</li>
         </ul>
+        <button class="buy-now-btn" data-product="Leather Wallet" data-price="699">Buy Now</button>
       </div>
     </div>
   </div>
@@ -527,6 +585,9 @@
       <form id="orderForm" autocomplete="off">
         <label for="productName">Product</label>
         <input type="text" id="productName" name="productName" readonly required />
+
+        <label for="productPrice">Price</label>
+        <input type="text" id="productPrice" name="productPrice" readonly required />
 
         <label for="customerName">Your Name</label>
         <input type="text" id="customerName" name="customerName" required />
@@ -580,20 +641,33 @@
     const closeModalBtn = document.getElementById('closeModalBtn');
     const orderForm = document.getElementById('orderForm');
     const productNameInput = document.getElementById('productName');
+    const productPriceInput = document.getElementById('productPrice');
     const thankyouOverlay = document.getElementById('thankyouOverlay');
 
-    // Add pointer cursor to cards
+    // Utility to open modal with product details
+    function openModal(product, price) {
+      orderForm.reset();
+      productNameInput.value = product;
+      productPriceInput.value = `₹${price}`;
+      modalOverlay.classList.add('active');
+    }
+
+    // Card click (open modal with product/price)
     document.querySelectorAll('.card').forEach(card => {
       card.style.cursor = "pointer";
+      card.addEventListener('click', function (e) {
+        // Only open if not clicking the Buy Now button itself
+        if (!(e.target && e.target.classList.contains('buy-now-btn'))) {
+          openModal(card.getAttribute('data-product'), card.getAttribute('data-price'));
+        }
+      });
     });
 
-    // Open modal with product name
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('click', function () {
-        const product = card.getAttribute('data-product') || card.querySelector('.card-title').innerText;
-        orderForm.reset();
-        productNameInput.value = product;
-        modalOverlay.classList.add('active');
+    // Buy Now button click (open modal with product/price)
+    document.querySelectorAll('.buy-now-btn').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        openModal(btn.getAttribute('data-product'), btn.getAttribute('data-price'));
       });
     });
 
@@ -617,33 +691,30 @@
     // On submit, open WhatsApp with form details
     orderForm.onsubmit = function (e) {
       e.preventDefault();
-      const product = document.getElementById('productName').value;
+      const product = productNameInput.value;
+      const price = productPriceInput.value;
       const name = document.getElementById('customerName').value;
       const mobile = document.getElementById('mobileNumber').value;
       const email = document.getElementById('emailId').value;
 
-      // WhatsApp message format
       const message =
         `Order Enquiry:%0A` +
         `Product: ${encodeURIComponent(product)}%0A` +
+        `Price: ${encodeURIComponent(price)}%0A` +
         `Name: ${encodeURIComponent(name)}%0A` +
         `Mobile: ${encodeURIComponent(mobile)}%0A` +
         `Email: ${encodeURIComponent(email)}`;
 
-      // Your WhatsApp number, e.g. 919876543210 (no + or spaces)
       const whatsappNumber = '9951149485';
       const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
 
-      // Open WhatsApp
       window.open(whatsappURL, '_blank');
 
-      // Show thank you message overlay
       modalOverlay.classList.remove('active');
       setTimeout(() => {
         thankyouOverlay.classList.add('active');
       }, 250);
 
-      // Auto-hide thank you message after 3 seconds
       setTimeout(() => {
         thankyouOverlay.classList.remove('active');
       }, 3300);
